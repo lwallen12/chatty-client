@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import Axios from 'axios';
 
 import ChatWindow from './ChatWindow';
 import ChatInput from './ChatInput';
@@ -66,8 +67,29 @@ import ChatInput from './ChatInput';
 // };
 
 const Chat = () => {
+
+    let chats = [
+        {
+        "user": "squilliam",
+        "message": "aaa-aron judge sucks"
+        },
+        {
+        "user": "not britt",
+        "message": "oldis chapman sucks"
+        }
+        ];
+
+    Axios.get('https://localhost:44326/chat/')
+                .then(response => {
+                    //this.setState({sessions: response.data})
+                    //console.log(response);
+
+                    //chats = response;
+
+                });
+
     const [ chat, setChat ] = useState([]);
-    const latestChat = useRef(null);
+    const latestChat = useRef(chats);
 
     latestChat.current = chat;
 
